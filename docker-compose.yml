@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  signaling_server:
+    image: webrtc-p2p-server
+    ports:
+      - 7000:7000
+  peerjs_server:
+    image: peerjs/peerjs-server
+    ports:
+      - 9000:9000
+  client1:
+    image: webrtc-p2p-client
+    ports:
+      - 3010:3000
+  client2:
+    image: webrtc-p2p-client
+    ports:
+      - 3020:3000
+    environment:
+      - PARTITION_LIST=00,01,02
+  client3:
+    image: webrtc-p2p-client
+    ports:
+      - 3030:3000
+    environment:
+      - PARTITION_LIST=03,04,05
